@@ -49,15 +49,21 @@ export default function VisitPage() {
           <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 48, lineHeight: 1, marginBottom: 24, fontWeight: 500 }}>
             2025 Pullman Ave<br />Jacksonville, FL
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 18, color: 'var(--ink-2)', fontSize: 17, fontFamily: 'var(--serif)' }}>
-            <div>
-              <div className="dp-eyebrow" style={{ marginBottom: 6 }}>From I-985</div>
-              Take exit 18 toward Cedar Creek. Head south on Pullman Ave — we&apos;re on the right, just past the elementary school.
-            </div>
-            <div>
-              <div className="dp-eyebrow" style={{ marginBottom: 6 }}>Parking</div>
-              Two large lots, with reserved cobalt-blue spots up front for first-time visitors.
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontFamily: 'var(--ui)', fontSize: 15, color: 'var(--ink-2)' }}>
+            <div className="dp-eyebrow" style={{ marginBottom: 4 }}>From I-95 S</div>
+            {[
+              'Exit onto Martin Luther King Jr Pkwy',
+              'Merge onto Martin Luther King Jr Pkwy',
+              'Turn left onto Fairfax St',
+              'Turn right onto W 11th St',
+              'Turn left at the 2nd cross street onto Pullman Ave',
+              'Destination will be on the right',
+            ].map((step, i) => (
+              <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'baseline' }}>
+                <span style={{ fontFamily: 'var(--ui)', fontSize: 11, fontWeight: 700, color: 'var(--cobalt)', minWidth: 20 }}>{i + 1}.</span>
+                <span>{step}</span>
+              </div>
+            ))}
           </div>
           <div style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>
             <a href="https://www.google.com/maps/dir/?api=1&destination=2025+Pullman+Ave%2C+Jacksonville%2C+FL+32209" target="_blank" rel="noopener noreferrer" className="dp-btn primary">
