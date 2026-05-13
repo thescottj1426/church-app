@@ -1,15 +1,37 @@
 import type { Metadata } from 'next';
 import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
+import { Cormorant_Garamond, EB_Garamond, Public_Sans } from 'next/font/google';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
+});
+
+const ebGaramond = EB_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-eb-garamond',
+  display: 'swap',
+});
+
+const publicSans = Public_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-public-sans',
+  display: 'swap',
+});
+
 const theme = createTheme({
-  primaryColor: 'yellow',
-  primaryShade: 8,
-  fontFamily: 'Georgia, serif',
+  primaryColor: 'blue',
+  fontFamily: 'var(--font-eb-garamond), Georgia, serif',
   headings: {
-    fontFamily: 'Georgia, serif',
+    fontFamily: 'var(--font-cormorant), Georgia, serif',
   },
 });
 
@@ -19,7 +41,7 @@ export const metadata: Metadata = {
     template: '%s | Divine Power Christian Church',
   },
   description:
-    'A welcoming community of faith. Join us for worship, service, and fellowship.',
+    'A family of faith since 1962. Join us for worship, community, and the Word in Jacksonville, FL.',
 };
 
 export default function RootLayout({
@@ -28,7 +50,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${ebGaramond.variable} ${publicSans.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <ColorSchemeScript />
       </head>

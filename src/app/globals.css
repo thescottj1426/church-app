@@ -1,5 +1,337 @@
 @import '@mantine/core/styles.css';
 
-html {
-  scroll-behavior: smooth;
+html { scroll-behavior: smooth; }
+
+/* ─── Design tokens ─── */
+:root {
+  --cream:    oklch(0.965 0.018 85);
+  --paper:    oklch(0.985 0.012 85);
+  --vellum:   oklch(0.92 0.025 80);
+  --ink:      oklch(0.16 0.04 258);
+  --ink-2:    oklch(0.44 0.05 258);
+  --rule:     oklch(0.16 0.04 258 / 0.12);
+
+  --cobalt:   oklch(0.38 0.14 258);
+  --cobalt-2: oklch(0.30 0.13 258);
+  --gold:     oklch(0.72 0.13 75);
+  --gold-2:   oklch(0.62 0.12 70);
+
+  --serif-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --serif:         var(--font-eb-garamond), "EB Garamond", Georgia, serif;
+  --ui:            var(--font-public-sans), "Public Sans", system-ui, sans-serif;
+
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
 }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--serif);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Eyebrow ─── */
+.dp-eyebrow {
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.dp-eyebrow.gold   { color: var(--gold-2); }
+.dp-eyebrow.cobalt { color: var(--cobalt); }
+
+/* ─── Ornament (diamond cross) ─── */
+.dp-orn {
+  display: inline-block;
+  width: 16px; height: 16px;
+  background:
+    linear-gradient(currentColor, currentColor) center/2px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) center/100% 2px no-repeat;
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+/* ─── Rule lines ─── */
+.dp-rule       { height: 1px; background: var(--rule); width: 100%; }
+.dp-rule-thick { height: 2px; background: var(--ink); width: 100%; }
+
+/* ─── Buttons — base + modifiers ─── */
+.dp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: var(--r-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .12s ease, background .12s ease, opacity .12s ease;
+  line-height: 1;
+}
+.dp-btn:hover { transform: translateY(-1px); }
+.dp-btn:active { transform: scale(0.98); }
+
+/* class-modifier pattern: className="dp-btn primary" */
+.dp-btn.primary         { background: var(--cobalt); color: var(--paper); }
+.dp-btn.primary:hover   { background: var(--cobalt-2); }
+.dp-btn.dark            { background: var(--cobalt); color: var(--paper); }
+.dp-btn.cobalt          { background: var(--cobalt); color: var(--paper); }
+.dp-btn.ghost           { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.dp-btn.ghost:hover     { background: var(--ink); color: var(--paper); }
+.dp-btn.ghost-light     { background: transparent; color: var(--cream); border: 1px solid var(--cream); }
+.dp-btn.ghost-light:hover { background: var(--cream); color: var(--ink); }
+.dp-btn.gold            { background: var(--gold); color: var(--ink); }
+
+/* ─── Inputs ─── */
+.dp-input, .dp-textarea, .dp-select {
+  font-family: var(--ui);
+  font-size: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: var(--r-sm);
+  width: 100%;
+  outline: none;
+  transition: border-color .15s;
+}
+.dp-input:focus, .dp-textarea:focus, .dp-select:focus { border-color: var(--cobalt); }
+.dp-label {
+  font-family: var(--ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ─── Card ─── */
+.dp-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+}
+
+/* ─── Tag / badge ─── */
+.dp-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--vellum);
+  color: var(--ink-2);
+}
+.dp-tag.cobalt { background: oklch(0.38 0.14 258 / 0.12); color: var(--cobalt); }
+.dp-tag.gold   { background: oklch(0.72 0.13 75 / 0.18); color: var(--gold-2); }
+
+/* ─── Nav link with sliding ruby underline ─── */
+.dp-nav-link {
+  font-family: var(--ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  padding: 4px 0;
+}
+.dp-nav-link::after {
+  content: "";
+  position: absolute; left: 0; right: 100%; bottom: -2px;
+  height: 1px; background: var(--gold);
+  transition: right .2s ease;
+}
+.dp-nav-link:hover::after,
+.dp-nav-link.active::after { right: 0; }
+.dp-nav-link.active { color: var(--cobalt); }
+
+/* ─── Scripture italic quote ─── */
+.dp-scripture {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: 28px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* ─── Stained-glass hero treatment ─── */
+.dp-stained {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 30% 20%, oklch(0.55 0.18 25 / 0.55), transparent 55%),
+    radial-gradient(ellipse at 75% 65%, oklch(0.45 0.17 258 / 0.55), transparent 55%),
+    radial-gradient(ellipse at 50% 90%, oklch(0.65 0.15 75 / 0.50), transparent 60%),
+    radial-gradient(ellipse at 15% 80%, oklch(0.55 0.10 140 / 0.45), transparent 55%),
+    linear-gradient(180deg, oklch(0.30 0.10 258), oklch(0.14 0.06 258));
+}
+.dp-stained::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(90deg, transparent 0, transparent calc(33% - 1px), oklch(0.10 0.05 258 / 0.8) calc(33% - 1px), oklch(0.10 0.05 258 / 0.8) 33%, transparent 33%),
+    linear-gradient(90deg, transparent 0, transparent calc(66% - 1px), oklch(0.10 0.05 258 / 0.8) calc(66% - 1px), oklch(0.10 0.05 258 / 0.8) 66%, transparent 66%),
+    linear-gradient(0deg, transparent 0, transparent calc(50% - 1px), oklch(0.10 0.05 258 / 0.7) calc(50% - 1px), oklch(0.10 0.05 258 / 0.7) 50%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ─── Footer ─── */
+.dp-footer { background: var(--cobalt); color: var(--cream); }
+.dp-footer a { color: oklch(0.88 0.03 240); text-decoration: none; transition: color .15s; }
+.dp-footer a:hover { color: var(--gold); }
+
+/* ─── Hero split grid ─── */
+.dp-hero-split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  min-height: 720px;
+}
+@media (max-width: 900px) {
+  .dp-hero-split { grid-template-columns: 1fr; min-height: auto; }
+}
+
+/* ─── Page hero ─── */
+.dp-page-hero {
+  padding: 90px 60px 80px;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .dp-page-hero { grid-template-columns: 1fr; padding: 48px 20px; gap: 40px; }
+}
+
+/* ─── Drop-cap ─── */
+.dp-dropcap::first-letter {
+  font-family: var(--serif-display);
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 0.82;
+  float: left;
+  margin-right: 0.1em;
+  margin-top: 0.06em;
+  color: var(--cobalt);
+}
+
+/* ─── Placeholder (hatched grey) ─── */
+.dp-placeholder {
+  background:
+    repeating-linear-gradient(135deg,
+      oklch(0.92 0.025 80) 0 8px,
+      oklch(0.88 0.03 80) 8px 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border-radius: var(--r-md);
+}
+
+/* ─── Responsive spacing ─── */
+:root {
+  --pad-h:  60px;
+  --sp-sm:  60px;
+  --sp-md:  80px;
+  --sp-lg: 120px;
+}
+@media (max-width: 900px) {
+  :root { --pad-h: 24px; --sp-sm: 40px; --sp-md: 48px; --sp-lg: 64px; }
+}
+@media (max-width: 480px) {
+  :root { --pad-h: 16px; --sp-sm: 28px; --sp-md: 36px; --sp-lg: 48px; }
+}
+
+/* ─── Responsive grid utilities ─── */
+/* gap is kept in inline style per-usage; only columns are responsive here */
+.dp-grid-2  { display: grid; grid-template-columns: repeat(2, 1fr); }
+.dp-grid-3  { display: grid; grid-template-columns: repeat(3, 1fr); }
+.dp-grid-4  { display: grid; grid-template-columns: repeat(4, 1fr); }
+.dp-grid-5  { display: grid; grid-template-columns: repeat(5, 1fr); }
+.dp-split   { display: grid; grid-template-columns: 1.4fr 1fr; }
+.dp-split-r { display: grid; grid-template-columns: 1fr 1.4fr; }
+
+@media (max-width: 900px) {
+  .dp-grid-2, .dp-split, .dp-split-r { grid-template-columns: 1fr; }
+  .dp-grid-3 { grid-template-columns: 1fr; }
+  .dp-grid-4, .dp-grid-5 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .dp-grid-4, .dp-grid-5 { grid-template-columns: 1fr; }
+}
+
+/* ─── Hero right panel (stained glass + countdown) ─── */
+.dp-hero-right { position: relative; }
+.dp-hero-right > .dp-stained { position: absolute; inset: 0; }
+.dp-countdown-float {
+  position: absolute; left: -60px; bottom: 60px; width: 360px; z-index: 10;
+}
+@media (max-width: 900px) {
+  .dp-hero-right { display: flex; flex-direction: column; }
+  .dp-hero-right > .dp-stained {
+    position: relative; inset: auto;
+    height: 260px; min-height: 260px; flex-shrink: 0;
+  }
+  .dp-countdown-float {
+    position: relative; left: 0; bottom: 0; width: 100%;
+  }
+}
+
+/* ─── Footer grid ─── */
+.dp-footer-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px;
+}
+@media (max-width: 900px) { .dp-footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+@media (max-width: 560px) { .dp-footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ─── Ministry card inner grid ─── */
+.dp-min-inner { display: grid; grid-template-columns: 180px 1fr; overflow: hidden; }
+@media (max-width: 700px) {
+  .dp-min-inner { grid-template-columns: 1fr; }
+  .dp-min-inner > :first-child { display: none; }
+}
+
+
+/* ─── Mobile drawer animation ─── */
+@keyframes dp-slide-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* ─── Responsive form row (name + email side by side, stacks on mobile) ─── */
+.dp-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .dp-form-row { grid-template-columns: 1fr; } }
+
+/* ─── Gold button → cobalt (blue-only palette) ─── */
+.dp-btn.gold        { background: var(--cobalt); color: var(--paper); }
+.dp-btn.gold:hover  { background: var(--cobalt-2); }
+
+/* ─── Sticky layout: disable on mobile ─── */
+@media (max-width: 900px) {
+  .dp-sticky-col { position: static !important; }
+}
+

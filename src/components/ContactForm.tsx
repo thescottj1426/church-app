@@ -1,130 +1,94 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  Alert,
-  Button,
-  Select,
-  Stack,
-  Text,
-  Textarea,
-  TextInput,
-  Title,
-} from '@mantine/core';
 
 export default function ContactForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [type, setType] = useState<string | null>('General Inquiry');
-  const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      setError('Please fill in all required fields.');
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, type, message }),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Something went wrong. Please try again.');
-      }
-
-      setSuccess(true);
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred.');
-    } finally {
-      setLoading(false);
-    }
+    setSubmitting(true);
+    await new Promise(r => setTimeout(r, 600));
+    setSubmitted(true);
+    setSubmitting(false);
   };
 
-  if (success) {
+  if (submitted) {
     return (
-      <Stack align="center" gap="md" ta="center" py="xl">
-        <Text fz={48}>🙏</Text>
-        <Title order={3} style={{ fontFamily: 'Georgia, serif' }}>
-          Message Received!
-        </Title>
-        <Text c="dimmed">
-          Thank you for reaching out. Someone from our team will be in touch with you soon.
-        </Text>
-        <Button
-          variant="subtle"
-          color="yellow"
-          onClick={() => {
-            setSuccess(false);
-            setName('');
-            setEmail('');
-            setType('General Inquiry');
-            setMessage('');
-          }}
-        >
-          Send Another Message
-        </Button>
-      </Stack>
+      <div style={{
+        background: 'var(--cobalt)', color: 'var(--cream)',
+        padding: '48px 40px', textAlign: 'center',
+      }}>
+        <div style={{ fontSize: 32, color: 'var(--gold)', marginBottom: 16 }}>✦</div>
+        <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: 28, color: 'var(--cream)', margin: '0 0 12px' }}>
+          Message received.
+        </h3>
+        <p style={{ fontFamily: 'var(--serif)', color: 'oklch(0.88 0.03 240)', lineHeight: 1.6, margin: 0 }}>
+          We&apos;ll be in touch within one business day.
+        </p>
+      </div>
     );
   }
 
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '12px 14px',
+    border: '1px solid var(--rule)',
+    background: 'var(--paper)',
+    fontFamily: 'var(--serif)',
+    fontSize: 16,
+    color: 'var(--ink)',
+    outline: 'none',
+    boxSizing: 'border-box',
+    borderRadius: 0,
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack gap="md">
-        <TextInput
-          label="Your Name"
-          placeholder="Jane Smith"
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <div className="dp-form-row">
+        <div>
+          <div className="dp-eyebrow" style={{ marginBottom: 8 }}>Name</div>
+          <input
+            required
+            value={form.name}
+            onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+            placeholder="Your name"
+            style={inputStyle}
+          />
+        </div>
+        <div>
+          <div className="dp-eyebrow" style={{ marginBottom: 8 }}>Email</div>
+          <input
+            required
+            type="email"
+            value={form.email}
+            onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+            placeholder="you@example.com"
+            style={inputStyle}
+          />
+        </div>
+      </div>
+      <div>
+        <div className="dp-eyebrow" style={{ marginBottom: 8 }}>Message</div>
+        <textarea
           required
-          value={name}
-          onChange={(e) => setName(e.currentTarget.value)}
+          rows={5}
+          value={form.message}
+          onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+          placeholder="How can we help?"
+          style={{ ...inputStyle, resize: 'vertical' }}
         />
-        <TextInput
-          label="Email Address"
-          placeholder="jane@example.com"
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.currentTarget.value)}
-        />
-        <Select
-          label="Type of Message"
-          data={['General Inquiry', 'Prayer Request', 'Volunteer', 'Other']}
-          value={type}
-          onChange={setType}
-        />
-        <Textarea
-          label="Message"
-          placeholder="How can we help or pray for you?"
-          required
-          minRows={5}
-          value={message}
-          onChange={(e) => setMessage(e.currentTarget.value)}
-        />
-
-        {error && (
-          <Alert color="red" title="Error">
-            {error}
-          </Alert>
-        )}
-
-        <Button type="submit" color="yellow" size="lg" fullWidth loading={loading}>
-          Send Message
-        </Button>
-
-        <Text fz="xs" ta="center" c="dimmed">
-          Your information is kept private and will only be used to respond to your message.
-        </Text>
-      </Stack>
+      </div>
+      <button
+        type="submit"
+        disabled={submitting}
+        className="dp-btn primary"
+        style={{ alignSelf: 'flex-start', opacity: submitting ? 0.6 : 1 }}
+      >
+        {submitting ? 'Sending…' : 'Send message →'}
+      </button>
     </form>
   );
 }

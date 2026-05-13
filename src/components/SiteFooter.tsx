@@ -1,78 +1,105 @@
-import { Container, SimpleGrid, Stack, Text } from '@mantine/core';
-import NewsletterSignup from './NewsletterSignup';
-
 export default function SiteFooter() {
   const year = new Date().getFullYear();
 
-  const linkStyle: React.CSSProperties = {
-    color: '#94a3b8',
-    fontSize: '0.875rem',
-    textDecoration: 'none',
-  };
-
   return (
-    <footer style={{ backgroundColor: '#1e293b', color: '#94a3b8', marginTop: 'auto' }}>
-      <Container size="xl" py="xl">
-        <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="xl">
-          {/* Brand */}
-          <Stack gap="xs">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="Divine Power Christian Church" style={{ height: 90, width: 'auto', borderRadius: 8, padding: '4px 8px', backgroundColor: 'white' }} />
-          </Stack>
+    <footer className="dp-footer" style={{ padding: '72px var(--pad-h) 36px', marginTop: 0 }}>
+      <div className="dp-footer-grid">
+        {/* Brand */}
+        <div>
+          {/* Logo */}
+          <div style={{ background: 'var(--paper)', padding: '6px 12px', borderRadius: 4, display: 'inline-block' }}>
+            <img src="/logo.png" alt="Divine Power Christian Church" style={{ height: 52, width: 'auto', display: 'block' }} />
+          </div>
 
-          {/* Quick links */}
-          <Stack gap="xs">
-            <Text fw={600} c="white">Quick Links</Text>
-            <a href="/donate" style={linkStyle}>Give Online</a>
-            <a href="/livestream" style={linkStyle}>Watch Live</a>
-            <a href="/events" style={linkStyle}>Events</a>
-            <a href="/ministries" style={linkStyle}>Ministries</a>
-            <a href="/groups" style={linkStyle}>Small Groups</a>
-            <a href="/connect" style={linkStyle}>Connect</a>
-            <a href="/about" style={linkStyle}>About Us</a>
-            <a href="/mission" style={linkStyle}>Our Mission</a>
-            <a href="/contact" style={linkStyle}>Contact</a>
-          </Stack>
+          <p style={{ marginTop: 24, fontSize: 16, lineHeight: 1.6, color: 'oklch(0.88 0.03 240)' }}>
+            A family of faith in Jacksonville — gathering, growing, and going out together.
+          </p>
+          <div style={{ display: 'flex', gap: 10, marginTop: 28, flexWrap: 'wrap' }}>
+            <a href="/visit" className="dp-btn ghost-light" style={{ textDecoration: 'none' }}>Plan a visit</a>
+            <a href="/contact" className="dp-btn ghost-light" style={{ textDecoration: 'none' }}>Get in touch</a>
+          </div>
 
-          {/* Connect */}
-          <Stack gap="xs">
-            <Text fw={600} c="white">Connect</Text>
-            <a
-              href="https://www.facebook.com/divine.p.church"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyle}
-            >
-              Facebook
-            </a>
-            <a href="mailto:info@divinepowerchurch.org" style={linkStyle}>
-              info@divinepowerchurch.org
-            </a>
-          </Stack>
-
-          {/* Newsletter */}
-          <Stack gap="xs">
-            <Text fw={600} c="white">Stay Connected</Text>
-            <Text fz="sm">Get weekly announcements delivered to your inbox.</Text>
-            <NewsletterSignup />
-          </Stack>
-        </SimpleGrid>
-
-        <div style={{ borderTop: '1px solid #334155', marginTop: '2rem', paddingTop: '1.5rem' }}>
-          <Text fz="sm" ta="center" mb="xs">
-            123 Main Street, Your City, ST 00000 &nbsp;·&nbsp;{' '}
-            <a href="tel:5551234567" style={{ color: '#94a3b8', textDecoration: 'none' }}>(555) 123-4567</a>
-            &nbsp;·&nbsp;{' '}
-            <a href="mailto:info@divinepowerchurch.org" style={{ color: '#94a3b8', textDecoration: 'none' }}>info@divinepowerchurch.org</a>
-          </Text>
-          <Text fz="sm" ta="center" mb="xl">
-            Sunday 9am &amp; 11am &nbsp;·&nbsp; Wednesday Bible Study 7pm &nbsp;·&nbsp; Office: Mon–Fri 9am–5pm
-          </Text>
-          <Text fz="xs" ta="center" style={{ borderTop: '1px solid #334155', paddingTop: '1.5rem' }}>
-            &copy; {year} Divine Power Christian Church. All rights reserved.
-          </Text>
+          {/* Social links */}
+          <div style={{ display: 'flex', gap: 8, marginTop: 24, flexWrap: 'wrap' }}>
+            {[
+              { label: 'YouTube',  href: 'https://www.youtube.com/@DivinePowerBC' },
+              { label: 'Facebook', href: 'https://www.facebook.com/divine.p.church' },
+              { label: 'TikTok',   href: 'https://www.tiktok.com/@divinepowerbc' },
+            ].map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: 'var(--ui)',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'oklch(0.88 0.03 240)',
+                  border: '1px solid oklch(0.28 0.14 258)',
+                  padding: '6px 12px',
+                  borderRadius: 4,
+                  textDecoration: 'none',
+                  transition: 'color .15s, border-color .15s',
+                }}
+              >{label}</a>
+            ))}
+          </div>
         </div>
-      </Container>
+
+        {/* Visit */}
+        <div>
+          <div className="dp-eyebrow gold" style={{ marginBottom: 18 }}>Visit</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, color: 'oklch(0.88 0.03 240)', fontFamily: 'var(--ui)', fontSize: 14 }}>
+            <div>2025 Pullman Ave</div>
+            <div>Jacksonville, FL 32209</div>
+            <div style={{ marginTop: 8 }}>Sun · Multiple services</div>
+            <div>Wed · Midweek service</div>
+          </div>
+        </div>
+
+        {/* Connect */}
+        <div>
+          <div className="dp-eyebrow gold" style={{ marginBottom: 18 }}>Connect</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <a href="/about">About us</a>
+            <a href="/ministries">Ministries</a>
+            <a href="/give">Give online</a>
+            <a href="/contact">Contact</a>
+            <div style={{ marginTop: 6, height: 1, background: 'oklch(0.28 0.14 258)' }} />
+            <a href="https://www.youtube.com/@DivinePowerBC" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://www.facebook.com/divine.p.church" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.tiktok.com/@divinepowerbc" target="_blank" rel="noopener noreferrer">TikTok</a>
+          </div>
+        </div>
+
+        {/* Get in touch */}
+        <div>
+          <div className="dp-eyebrow gold" style={{ marginBottom: 18 }}>Get in touch</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, color: 'oklch(0.88 0.03 240)', fontFamily: 'var(--ui)', fontSize: 14 }}>
+            <a href="mailto:office@devinepower.org">office@devinepower.org</a>
+            <a href="tel:9041234567">(904) 123-4567</a>
+            <div style={{ marginTop: 12, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)' }}>
+              Office hours
+            </div>
+            <div>Tue–Fri · 9 am – 4 pm</div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{
+        borderTop: '1px solid oklch(0.28 0.14 258)',
+        paddingTop: 24,
+        display: 'flex', justifyContent: 'space-between',
+        fontFamily: 'var(--ui)', fontSize: 12,
+        color: 'oklch(0.78 0.03 240)', letterSpacing: '0.04em',
+        flexWrap: 'wrap', gap: 8,
+      }}>
+        <span>© {year} Divine Power Christian Church</span>
+        <span>Built with Next.js + Mantine</span>
+      </div>
     </footer>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Container, Stack, Text, Title } from '@mantine/core';
+import ContactForm from '@/components/ContactForm';
+import PrayerForm from '@/components/PrayerForm';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -9,72 +10,72 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* Page header */}
-      <section style={{ backgroundColor: '#1e293b', color: 'white', padding: '4rem 1rem' }}>
-        <Container size="lg">
-          <Stack align="center" gap="xs">
-            <Title order={1} ta="center" style={{ fontFamily: 'Georgia, serif', color: 'white' }}>
-              Contact Us
-            </Title>
-            <Text ta="center" c="gray.4" fz="lg">
-              We would love to hear from you.
-            </Text>
-          </Stack>
-        </Container>
+      {/* Page hero */}
+      <section className="dp-page-hero">
+        <div>
+          <div className="dp-eyebrow cobalt" style={{ marginBottom: 20 }}>We&apos;d love to hear from you</div>
+          <h1 style={{
+            fontFamily: 'var(--serif-display)',
+            fontSize: 'clamp(56px, 7vw, 108px)',
+            lineHeight: 0.92, fontWeight: 500,
+            letterSpacing: '-0.02em', margin: 0,
+          }}>
+            Get in touch.
+          </h1>
+          <p style={{ marginTop: 28, fontSize: 21, color: 'var(--ink-2)', maxWidth: 620, lineHeight: 1.5, fontFamily: 'var(--serif)' }}>
+            Questions, prayer requests, volunteer interest — we&apos;re glad you reached out.
+          </p>
+        </div>
       </section>
 
-      {/* Contact info */}
-      <section style={{ padding: '4rem 1rem', backgroundColor: '#fafaf9' }}>
-        <Container size="sm">
-          <Stack gap="xl">
-            <div>
-              <Text tt="uppercase" fz="sm" fw={600} style={{ letterSpacing: '0.12em', color: '#d97706', marginBottom: '0.75rem' }}>
-                Find Us
-              </Text>
-              <Title order={3} mb="xs" style={{ fontFamily: 'Georgia, serif' }}>
-                Divine Power Christian Church
-              </Title>
-              <Text c="dimmed" lh={1.8}>
-                123 Main Street<br />
-                Your City, ST 00000
-              </Text>
-            </div>
+      {/* Two forms */}
+      <section className="dp-grid-2" style={{ padding: 'var(--sp-md) var(--pad-h)', gap: 60 }}>
+        {/* General contact — left */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 16 }}>
+            <span className="dp-eyebrow cobalt">01</span>
+            <span className="dp-eyebrow">General</span>
+          </div>
+          <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 48, fontWeight: 500, margin: '0 0 12px' }}>
+            Send us a message
+          </h2>
+          <p style={{ color: 'var(--ink-2)', fontSize: 17, lineHeight: 1.55, margin: '0 0 36px', fontFamily: 'var(--serif)' }}>
+            For general inquiries, pastoral care, event questions, or anything else.
+          </p>
+          <ContactForm />
+        </div>
 
-            <div>
-              <Text tt="uppercase" fz="sm" fw={600} style={{ letterSpacing: '0.12em', color: '#d97706', marginBottom: '0.75rem' }}>
-                Service Times
-              </Text>
-              <Text c="dimmed" lh={1.8}>
-                Sunday: 9:00 AM &amp; 11:00 AM<br />
-                Wednesday Bible Study: 7:00 PM
-              </Text>
-            </div>
+        {/* Prayer request — right */}
+        <div style={{ background: 'var(--vellum)', padding: 48 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 16 }}>
+            <span className="dp-eyebrow cobalt">02</span>
+            <span className="dp-eyebrow">Prayer</span>
+          </div>
+          <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 48, fontWeight: 500, margin: '0 0 12px' }}>
+            Prayer request
+          </h2>
+          <p style={{ color: 'var(--ink-2)', fontSize: 17, lineHeight: 1.55, margin: '0 0 36px', fontFamily: 'var(--serif)' }}>
+            Our prayer team lifts every request by name — in private or together.
+          </p>
+          <PrayerForm />
+        </div>
+      </section>
 
-            <div>
-              <Text tt="uppercase" fz="sm" fw={600} style={{ letterSpacing: '0.12em', color: '#d97706', marginBottom: '0.75rem' }}>
-                Get in Touch
-              </Text>
-              <Text c="dimmed" lh={1.8}>
-                Email:{' '}
-                <a href="mailto:info@gracechurch.org" style={{ color: '#d97706' }}>
-                  info@gracechurch.org
-                </a>
-                <br />
-                Phone: (555) 123-4567
-              </Text>
+      {/* Office info strip */}
+      <section style={{ padding: 'var(--sp-sm) var(--pad-h) var(--sp-lg)', background: 'var(--vellum)', borderTop: '1px solid var(--rule)' }}>
+        <div className="dp-grid-4" style={{ gap: 48 }}>
+          {[
+            { label: 'Office',  val: '2025 Pullman Ave\nJacksonville, FL 32209' },
+            { label: 'Phone',   val: '(904) 123-4567' },
+            { label: 'Email',   val: 'office@devinepower.org' },
+            { label: 'Hours',   val: 'Tue – Fri  9 am – 4 pm\nSun  8 am – 12:30 pm' },
+          ].map(({ label, val }) => (
+            <div key={label}>
+              <div className="dp-eyebrow" style={{ marginBottom: 12 }}>{label}</div>
+              <div style={{ fontFamily: 'var(--serif-display)', fontSize: 22, lineHeight: 1.4, whiteSpace: 'pre-line' }}>{val}</div>
             </div>
-
-            <div>
-              <Text tt="uppercase" fz="sm" fw={600} style={{ letterSpacing: '0.12em', color: '#d97706', marginBottom: '0.75rem' }}>
-                Office Hours
-              </Text>
-              <Text c="dimmed" lh={1.8}>
-                Monday – Friday: 9:00 AM – 5:00 PM<br />
-                Saturday – Sunday: Closed (except services)
-              </Text>
-            </div>
-          </Stack>
-        </Container>
+          ))}
+        </div>
       </section>
     </>
   );

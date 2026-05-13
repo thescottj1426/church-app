@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { TextInput, Button, Group, Text } from '@mantine/core';
 
-export default function NewsletterSignup() {
+export default function NewsletterSignup({ dark = true }: { dark?: boolean }) {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -51,14 +51,24 @@ export default function NewsletterSignup() {
           size="sm"
           style={{ flex: 1 }}
           styles={{
-            input: {
+            input: dark ? {
               backgroundColor: 'rgba(255,255,255,0.08)',
               border: '1px solid rgba(255,255,255,0.2)',
               color: 'white',
+            } : {
+              backgroundColor: 'var(--paper)',
+              border: '1px solid oklch(0.83 0.022 80)',
+              color: 'var(--ink)',
             },
           }}
         />
-        <Button type="submit" color="yellow" size="sm" loading={loading}>
+        <Button
+          type="submit"
+          size="sm"
+          loading={loading}
+          style={dark ? {} : { backgroundColor: 'var(--cobalt)', color: 'white', border: 'none' }}
+          color={dark ? 'yellow' : undefined}
+        >
           Subscribe
         </Button>
       </Group>
