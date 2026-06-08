@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
 import { Cormorant_Garamond, EB_Garamond, Public_Sans } from 'next/font/google';
 import './globals.css';
@@ -35,13 +35,37 @@ const theme = createTheme({
   },
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.divinepowermbc.com';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Divine Power Christian Church',
     template: '%s | Divine Power Christian Church',
   },
   description:
-    'A family of faith since 1962. Join us for worship, community, and the Word in Jacksonville, FL.',
+    'A family of faith in Jacksonville, FL. Join us for Sunday worship, Bible study, and community at Divine Power Christian Church.',
+  keywords: ['Divine Power Christian Church', 'church Jacksonville FL', 'Jacksonville church', 'Christian church Jacksonville'],
+  openGraph: {
+    type: 'website',
+    siteName: 'Divine Power Christian Church',
+    title: 'Divine Power Christian Church',
+    description: 'A family of faith in Jacksonville, FL. Join us for Sunday worship, Bible study, and community.',
+    url: siteUrl,
+    images: [{ url: '/logo.png', width: 512, alt: 'Divine Power Christian Church' }],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Divine Power Christian Church',
+    description: 'A family of faith in Jacksonville, FL.',
+    images: ['/logo.png'],
+  },
+  alternates: { canonical: siteUrl },
 };
 
 export default function RootLayout({
@@ -57,6 +81,38 @@ export default function RootLayout({
     >
       <head>
         <ColorSchemeScript />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Church',
+            name: 'Divine Power Christian Church',
+            url: siteUrl,
+            logo: `${siteUrl}/logo.png`,
+            image: `${siteUrl}/logo.png`,
+            description: 'A family of faith in Jacksonville, FL gathering each Sunday to worship, grow, and serve.',
+            telephone: '+1-904-123-4567',
+            email: 'office@divinepower.church',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '2025 Pullman Ave',
+              addressLocality: 'Jacksonville',
+              addressRegion: 'FL',
+              postalCode: '32209',
+              addressCountry: 'US',
+            },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: 30.3322,
+              longitude: -81.6557,
+            },
+            sameAs: [
+              'https://www.youtube.com/@DivinePowerBC',
+              'https://www.facebook.com/divine.p.church',
+              'https://www.tiktok.com/@divinepowerbc',
+            ],
+          })}}
+        />
       </head>
       <body>
         <MantineProvider theme={theme}>

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import CountdownTimer from '@/components/CountdownTimer';
 import VisitorChecklist from '@/components/VisitorChecklist';
-import HomeNewsletter from '@/components/HomeNewsletter';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -162,29 +161,6 @@ export default function HomePage() {
               </div>
             </a>
           ))}
-        </div>
-      </section>
-
-      {/* ── NEWSLETTER ── */}
-      <section style={{ padding: '0 var(--pad-h) var(--sp-lg)' }}>
-        <div className="dp-grid-2" style={{
-          background: 'var(--vellum)',
-          padding: 'var(--sp-md) var(--pad-h)',
-          gap: 80, alignItems: 'center',
-          borderRadius: 8,
-        }}>
-          <div>
-            <div className="dp-eyebrow cobalt" style={{ marginBottom: 18 }}>Stay in the loop</div>
-            <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 'clamp(32px, 4vw, 52px)', marginBottom: 18, fontWeight: 500 }}>
-              The weekly letter from{' '}
-              <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>Divine Power.</em>
-            </h2>
-            <p style={{ fontSize: 18, color: 'var(--ink-2)', lineHeight: 1.6, fontFamily: 'var(--serif)' }}>
-              A short Friday email — what&apos;s on Sunday, prayer requests, ways to serve,
-              and a verse for the weekend. No spam, ever.
-            </p>
-          </div>
-          <HomeNewsletter />
         </div>
       </section>
     </>
