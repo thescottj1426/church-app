@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StaffPhoto from '@/components/StaffPhoto';
 
 export const metadata: Metadata = {
   title: 'Staff',
@@ -6,15 +7,10 @@ export const metadata: Metadata = {
 };
 
 const STAFF = [
-  { name: 'Marcus Reed',      role: 'Associate Pastor',      focus: 'Young Adults & Pastoral Care',  color: 'var(--cobalt)' },
-  { name: 'Devon Carter',     role: 'Youth Pastor',           focus: 'Grades 6–12',                  color: 'var(--cobalt)'   },
-  { name: 'Linda Whitley',    role: "Children's Director",    focus: 'Birth – 5th Grade',             color: 'var(--gold)'   },
-  { name: 'Patricia Howell',  role: 'Worship Director',       focus: 'Music & Worship Arts',          color: 'var(--cobalt)'   },
-  { name: 'Robert Ngozi',     role: 'Missions Director',      focus: 'Outreach & Global Partners',    color: 'var(--cobalt)' },
-  { name: 'Sarah Beckett',    role: "Women's Ministry",       focus: 'Bible Study & Mentoring',       color: 'var(--cobalt)'   },
-  { name: 'Tom Albright',     role: "Men's Ministry",         focus: 'Monthly Prayer & Retreats',     color: 'var(--cobalt)' },
-  { name: 'Esther Park',      role: 'Senior Saints',          focus: 'Ages 60+',                      color: 'var(--cobalt)'   },
-  { name: 'Carol Wilson',    role: 'Church Administrator',   focus: 'Operations & Communications',   color: 'var(--gold)'   },
+  { name: 'Gloria Wilson',       role: 'Minister',         focus: '',                             photo: 'Minister Gloria Wilson.jpg',      color: 'var(--cobalt)' },
+  { name: 'Shajuan Wilson',      role: 'Minister',         focus: '',                             photo: 'Minister Shajuan Wilson.jpeg',    color: 'var(--cobalt)' },
+  { name: 'Artashia Edwards',    role: 'Minister',         focus: '',                             photo: 'Minister Artashia Edwards.jpeg',  color: 'var(--cobalt)' },
+  { name: 'Marissa Myers',       role: 'Media/Marketing',  focus: '',                             photo: 'Marissa Myers.jpeg',              color: 'var(--cobalt)' },
 ];
 
 export default function StaffPage() {
@@ -46,20 +42,7 @@ export default function StaffPage() {
 
       {/* Featured senior pastor */}
       <section className="dp-split-r" style={{ padding: 'var(--sp-md) var(--pad-h)', gap: 80, alignItems: 'start' }}>
-        <div className="dp-stained" style={{ height: 560, borderRadius: 0, position: 'relative' }}>
-          <div className="dp-placeholder" style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0,
-            height: 80, borderRadius: 0,
-            display: 'flex', alignItems: 'center', padding: '0 28px',
-            background: 'oklch(0.10 0.04 258 / 0.75)',
-            backdropFilter: 'blur(4px)',
-          }}>
-            <div>
-              <div style={{ fontFamily: 'var(--serif-display)', fontSize: 20, color: 'var(--cream)' }}>Pastor Steve Wilson</div>
-              <div className="dp-eyebrow gold" style={{ marginTop: 4 }}>Senior Pastor</div>
-            </div>
-          </div>
-        </div>
+        <StaffPhoto name="Pastor Steve T. Wilson" photo="Pastor Steve T. Wilson.jpeg" label="Senior Pastor" />
 
         <div>
           <div className="dp-eyebrow cobalt" style={{ marginBottom: 16 }}>Senior Pastor · Since 2011</div>
@@ -95,12 +78,10 @@ export default function StaffPage() {
         <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 56, fontWeight: 500, margin: '0 0 48px' }}>
           The team
         </h2>
-        <div className="dp-grid-3" style={{ gap: 32 }}>
+        <div className="dp-grid-4" style={{ gap: 24 }}>
           {STAFF.map((s, i) => (
-            <div key={s.name} className="dp-card" style={{ padding: 0, overflow: 'hidden', borderTop: `3px solid ${s.color}` }}>
-              <div className="dp-placeholder" style={{ height: 220, borderRadius: 0 }}>
-                {String(i + 1).padStart(2, '0')} · {s.name}
-              </div>
+            <div key={s.name} className="dp-card" style={{ padding: 0, overflow: 'hidden', border: 'none' }}>
+              <StaffPhoto name={s.name} photo={s.photo} />
               <div style={{ padding: '24px 28px' }}>
                 <div className="dp-eyebrow" style={{ color: s.color, marginBottom: 8 }}>{s.role}</div>
                 <h3 style={{ fontFamily: 'var(--serif-display)', fontSize: 28, margin: '0 0 6px', fontWeight: 500 }}>{s.name}</h3>

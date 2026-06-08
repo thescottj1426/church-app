@@ -46,7 +46,11 @@ export default function AboutPage() {
             </span>
             n 1962, Pastor Robert Devine gathered eleven other families who wanted a Christian congregation rooted in expository preaching and warm community. They met in a borrowed school cafeteria for three years before purchasing land on Mulberry Lane.
           </p>
-          <div className="dp-placeholder" style={{ height: 360 }}>Historical photo · congregation, 1965</div>
+          <img
+            src="/photos/staff/gallery/frontofchurch.jpg"
+            alt="Front of Divine Power Christian Church"
+            style={{ width: '100%', height: '80vh', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+          />
           <p>
             The church bought its first piece of land in 1965 — five acres on Mulberry Lane, where we still meet today.
             The original sanctuary, built mostly by volunteers, seated 180. The current building was completed in 1998 and seats 600.

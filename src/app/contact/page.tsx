@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import ContactForm from '@/components/ContactForm';
-import PrayerForm from '@/components/PrayerForm';
+// import ContactForm from '@/components/ContactForm';
+// import PrayerForm from '@/components/PrayerForm';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -28,9 +28,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Two forms */}
-      <section className="dp-grid-2" style={{ padding: 'var(--sp-md) var(--pad-h)', gap: 60 }}>
-        {/* General contact — left */}
+      {/* Two forms — hidden until ready */}
+      {/* <section className="dp-grid-2" style={{ padding: 'var(--sp-md) var(--pad-h)', gap: 60 }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 16 }}>
             <span className="dp-eyebrow cobalt">01</span>
@@ -44,8 +43,6 @@ export default function ContactPage() {
           </p>
           <ContactForm />
         </div>
-
-        {/* Prayer request — right */}
         <div style={{ background: 'var(--vellum)', padding: 48 }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 16 }}>
             <span className="dp-eyebrow cobalt">02</span>
@@ -59,7 +56,7 @@ export default function ContactPage() {
           </p>
           <PrayerForm />
         </div>
-      </section>
+      </section> */}
 
       {/* Office info strip */}
       <section style={{ padding: 'var(--sp-sm) var(--pad-h) var(--sp-lg)', background: 'var(--vellum)', borderTop: '1px solid var(--rule)' }}>

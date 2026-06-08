@@ -10,7 +10,6 @@ const PAGES = [
   { href: '/calendar',  label: 'Calendar' },
   { href: '/staff',     label: 'Staff' },
   { href: '/visit',     label: 'Visit' },
-  { href: '/contact',   label: 'Contact' },
 ];
 
 function Logo({ dark = false, size = 'md' }: { dark?: boolean; size?: 'sm' | 'md' | 'lg' }) {

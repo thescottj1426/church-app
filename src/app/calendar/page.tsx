@@ -1,14 +1,10 @@
 import type { Metadata } from 'next';
+import CalendarWiz from '@/components/CalendarWiz';
 
 export const metadata: Metadata = {
   title: 'Calendar',
   description: 'Upcoming events and services at Divine Power Christian Church.',
 };
-
-// Replace the src with your Google Calendar embed URL.
-// Google Calendar → Settings → select your calendar → "Integrate calendar" → copy the iframe src.
-const GCAL_SRC =
-  'https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FNew_York&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&mode=MONTH';
 
 export default function CalendarPage() {
   return (
@@ -31,11 +27,7 @@ export default function CalendarPage() {
       </section>
 
       <section style={{ padding: 'var(--sp-sm) var(--pad-h) var(--sp-lg)' }}>
-        <iframe
-          src={GCAL_SRC}
-          style={{ width: '100%', height: 700, border: 'none', display: 'block' }}
-          title="Divine Power Christian Church Calendar"
-        />
+        <CalendarWiz />
       </section>
     </>
   );
