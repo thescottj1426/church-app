@@ -3,15 +3,28 @@
 import { useEffect, useState } from 'react';
 
 function nextService(now: Date): Date {
-  const d = new Date(now);
-  const day = d.getDay();
-  // Target Sunday 11:00 AM ET (UTC-4 EDT / UTC-5 EST)
-  const etOffset = -5; // EST; adjust to -4 in summer if needed
-  const serviceHourUTC = 11 - etOffset; // 16 UTC (EST) or 15 UTC (EDT)
-  const daysUntil = day === 0 ? (d.getUTCHours() >= serviceHourUTC ? 7 : 0) : (7 - day) % 7 || 7;
-  d.setDate(d.getDate() + daysUntil);
-  d.setUTCHours(serviceHourUTC, 0, 0, 0);
-  return d;
+  // Interpret current time in ET (handles EDT/EST automatically)
+  const etNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+  const etDay = etNow.getDay();
+  const etHour = etNow.getHours();
+  const etOffset = now.getTime() - etNow.getTime();
+
+  // If Sunday before noon ET, count to today's service; otherwise next Sunday
+  const daysUntil = etDay === 0 && etHour < 12 ? 0 : (7 - etDay) || 7;
+
+  const target = new Date(etNow);
+  target.setDate(target.getDate() + daysUntil);
+  target.setHours(11, 0, 0, 0);
+
+  return new Date(target.getTime() + etOffset);
+}
+
+function isServiceNow(now: Date): boolean {
+  const etNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+  const etDay = etNow.getDay();
+  const etHour = etNow.getHours();
+  // Sunday between 11 AM and 1 PM ET
+  return etDay === 0 && etHour >= 11 && etHour < 13;
 }
 
 export default function CountdownTimer() {
@@ -23,7 +36,9 @@ export default function CountdownTimer() {
     return () => clearInterval(id);
   }, []);
 
-  const shell = (
+  const live = now && isServiceNow(now);
+
+  return (
     <div style={{
       background: 'var(--paper)',
       border: '1px solid var(--rule)',
@@ -35,36 +50,50 @@ export default function CountdownTimer() {
         Sunday Worship
       </div>
       <div style={{ fontFamily: 'var(--ui)', fontSize: 13, color: 'var(--ink-2)', marginBottom: 22, minHeight: 18 }}>
-        {now ? now.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : ' '}
+        {now ? now.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : ' '}
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
-        {(['Days', 'Hrs', 'Min', 'Sec'] as const).map((l) => {
-          let v = 0;
-          if (now) {
-            const next = nextService(now);
-            const diff = Math.max(0, next.getTime() - now.getTime());
-            if (l === 'Days') v = Math.floor(diff / 86400000);
-            else if (l === 'Hrs') v = Math.floor((diff % 86400000) / 3600000);
-            else if (l === 'Min') v = Math.floor((diff % 3600000) / 60000);
-            else v = Math.floor((diff % 60000) / 1000);
-          }
-          return (
-            <div key={l} style={{
-              background: 'var(--vellum)',
-              padding: '12px 0',
-              textAlign: 'center',
-              borderRadius: 4,
-            }}>
-              <div style={{ fontFamily: 'var(--serif-display)', fontSize: 28, fontWeight: 500, lineHeight: 1 }}>
-                {String(v).padStart(2, '0')}
+
+      {live ? (
+        <div style={{
+          background: 'var(--cobalt)',
+          color: 'var(--cream)',
+          textAlign: 'center',
+          padding: '18px 0',
+          borderRadius: 4,
+          fontFamily: 'var(--serif-display)',
+          fontSize: 22,
+          letterSpacing: '0.02em',
+        }}>
+          Service is today — join us!
+        </div>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+          {(['Days', 'Hrs', 'Min', 'Sec'] as const).map((l) => {
+            let v = 0;
+            if (now) {
+              const next = nextService(now);
+              const diff = Math.max(0, next.getTime() - now.getTime());
+              if (l === 'Days') v = Math.floor(diff / 86400000);
+              else if (l === 'Hrs') v = Math.floor((diff % 86400000) / 3600000);
+              else if (l === 'Min') v = Math.floor((diff % 3600000) / 60000);
+              else v = Math.floor((diff % 60000) / 1000);
+            }
+            return (
+              <div key={l} style={{
+                background: 'var(--vellum)',
+                padding: '12px 0',
+                textAlign: 'center',
+                borderRadius: 4,
+              }}>
+                <div style={{ fontFamily: 'var(--serif-display)', fontSize: 28, fontWeight: 500, lineHeight: 1 }}>
+                  {String(v).padStart(2, '0')}
+                </div>
+                <div className="dp-eyebrow" style={{ fontSize: 10, marginTop: 4 }}>{l}</div>
               </div>
-              <div className="dp-eyebrow" style={{ fontSize: 10, marginTop: 4 }}>{l}</div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
-
-  return shell;
 }

@@ -91,8 +91,7 @@ export default function RootLayout({
             logo: `${siteUrl}/logo.png`,
             image: `${siteUrl}/logo.png`,
             description: 'A family of faith in Jacksonville, FL gathering each Sunday to worship, grow, and serve.',
-            telephone: '+1-904-123-4567',
-            email: 'office@divinepower.church',
+            email: 'divinepowerjax@gmail.com',
             address: {
               '@type': 'PostalAddress',
               streetAddress: '2025 Pullman Ave',

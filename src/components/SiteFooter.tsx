@@ -80,8 +80,7 @@ export default function SiteFooter() {
         <div>
           <div className="dp-eyebrow gold" style={{ marginBottom: 18 }}>Get in touch</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, color: 'oklch(0.88 0.03 240)', fontFamily: 'var(--ui)', fontSize: 14 }}>
-            <a href="mailto:office@devinepower.org">office@devinepower.org</a>
-            <a href="tel:9041234567">(904) 123-4567</a>
+            <a href="mailto:divinepowerjax@gmail.com">divinepowerjax@gmail.com</a>
             <div style={{ marginTop: 12, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)' }}>
               Office hours
             </div>

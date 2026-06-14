@@ -145,7 +145,6 @@ export default function SiteHeader() {
               }}>
                 <div>2025 Pullman Ave</div>
                 <div>Jacksonville, FL 32209</div>
-                <div style={{ marginTop: 8, color: 'var(--gold)' }}>(904) 123-4567</div>
               </div>
             </div>
           </aside>

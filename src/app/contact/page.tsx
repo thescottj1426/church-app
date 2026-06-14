@@ -63,8 +63,7 @@ export default function ContactPage() {
         <div className="dp-grid-4" style={{ gap: 48 }}>
           {[
             { label: 'Office',  val: '2025 Pullman Ave\nJacksonville, FL 32209' },
-            { label: 'Phone',   val: '(904) 123-4567' },
-            { label: 'Email',   val: 'office@devinepower.org' },
+            { label: 'Email',   val: 'divinepowerjax@gmail.com' },
             { label: 'Hours',   val: 'Tue – Fri  9 am – 4 pm\nSun  8 am – 12:30 pm' },
           ].map(({ label, val }) => (
             <div key={label}>
