@@ -5,9 +5,12 @@ import { useEffect, useState } from 'react';
 function nextService(now: Date): Date {
   const d = new Date(now);
   const day = d.getDay();
-  const daysUntil = day === 0 ? (d.getHours() >= 12 ? 7 : 0) : 7 - day;
+  // Target Sunday 11:00 AM ET (UTC-4 EDT / UTC-5 EST)
+  const etOffset = -5; // EST; adjust to -4 in summer if needed
+  const serviceHourUTC = 11 - etOffset; // 16 UTC (EST) or 15 UTC (EDT)
+  const daysUntil = day === 0 ? (d.getUTCHours() >= serviceHourUTC ? 7 : 0) : (7 - day) % 7 || 7;
   d.setDate(d.getDate() + daysUntil);
-  d.setHours(8, 30, 0, 0);
+  d.setUTCHours(serviceHourUTC, 0, 0, 0);
   return d;
 }
 

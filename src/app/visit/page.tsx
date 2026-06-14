@@ -85,9 +85,9 @@ export default function VisitPage() {
         </div>
         <div className="dp-grid-3" style={{ gap: 32, maxWidth: 1100, margin: '0 auto' }}>
           {[
-            { t: 'Morning',   n: 'Traditional Service', d: 'Hymns, choir, and organ — a reverent start to Sunday morning. Sunday best is welcome but never required.', c: 'var(--cobalt)' },
-            { t: 'Mid-day',   n: 'Sunday School',        d: 'Classes for every age group — adult electives, kids, youth, and seniors. Between services.', c: 'var(--gold)' },
-            { t: 'Late',      n: 'Blended Service',       d: 'Hymns and modern worship together, with children\'s church for K–5. Families welcome.', c: 'var(--cobalt)' },
+            { t: '10:00 AM', n: 'Sunday School', d: 'Classes for all ages before the worship service.', c: 'var(--gold)' },
+            { t: '11:00 AM', n: 'Sunday Worship', d: 'Our main worship service every Sunday morning.', c: 'var(--cobalt)' },
+            { t: '7:00 PM',  n: 'Wednesday Worship', d: 'Midweek worship and teaching, Wednesdays 7–8 PM.', c: 'var(--cobalt)' },
           ].map((s) => (
             <div key={s.t} className="dp-card" style={{ padding: 36, borderTop: `3px solid ${s.c}` }}>
               <div style={{ fontFamily: 'var(--serif-display)', fontSize: 56, color: s.c, lineHeight: 1 }}>{s.t}</div>

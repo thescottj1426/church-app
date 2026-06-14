@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 };
 
 const STAFF = [
-  { name: 'Gloria Wilson',       role: 'Minister',         focus: '',                             photo: 'Minister Gloria Wilson.jpg',      color: 'var(--cobalt)' },
+  { name: 'Gloria Wilson',       role: 'Reverend',         focus: '',                             photo: 'GloriaWilson.jpeg.jpeg',          color: 'var(--cobalt)' },
   { name: 'Shajuan Wilson',      role: 'Minister',         focus: '',                             photo: 'Minister Shajuan Wilson.jpeg',    color: 'var(--cobalt)' },
-  { name: 'Artashia Edwards',    role: 'Minister',         focus: '',                             photo: 'Minister Artashia Edwards.jpeg',  color: 'var(--cobalt)' },
-  { name: 'Marissa Myers',       role: 'Media/Marketing',  focus: '',                             photo: 'Marissa Myers.jpeg',              color: 'var(--cobalt)' },
+  { name: 'Artashia Edwards',    role: 'Minister',         focus: '',                             photo: 'AtashiaEdwards.jpeg.jpeg',        color: 'var(--cobalt)' },
+  { name: 'Marissa Myers',       role: 'Media/Marketing',  focus: '',                             photo: 'MrissaMyers.jpeg.jpeg',           color: 'var(--cobalt)' },
 ];
 
 export default function StaffPage() {
@@ -34,9 +34,9 @@ export default function StaffPage() {
         </div>
         <div style={{ paddingLeft: 36, borderLeft: '2px solid var(--cobalt)' }}>
           <p style={{ fontFamily: 'var(--serif-display)', fontStyle: 'italic', fontSize: 28, lineHeight: 1.4, color: 'var(--ink)', margin: 0 }}>
-            &ldquo;Be shepherds of God&apos;s flock that is under your care, watching over them — not because you must, but because you are willing.&rdquo;
+            &ldquo;Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.&rdquo;
           </p>
-          <div className="dp-eyebrow" style={{ marginTop: 16 }}>1 Peter 5:2</div>
+          <div className="dp-eyebrow" style={{ marginTop: 16 }}>Proverbs 3:5–6</div>
         </div>
       </section>
 
@@ -49,23 +49,6 @@ export default function StaffPage() {
           <h2 style={{ fontFamily: 'var(--serif-display)', fontSize: 84, lineHeight: 0.9, fontWeight: 500, margin: '0 0 28px' }}>
             Pastor<br />Steve<br />Wilson
           </h2>
-          <div style={{ fontFamily: 'var(--ui)', fontSize: 13, color: 'var(--ink-2)', marginBottom: 28 }}>
-            MDiv · Howard University School of Divinity<br />
-            DMin · Asbury Theological Seminary
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, fontSize: 18, lineHeight: 1.7, color: 'var(--ink-2)', fontFamily: 'var(--serif)' }}>
-            <p style={{ margin: 0 }}>
-              <span style={{
-                fontFamily: 'var(--serif-display)', fontSize: 64,
-                float: 'left', lineHeight: 0.85,
-                marginRight: 10, marginTop: 6, color: 'var(--cobalt)',
-              }}>P</span>
-              astor Steve came to Divine Power in 2011 after ten years in pastoral ministry in Atlanta. His passion is expository preaching — working through books of the Bible verse by verse, letting the text set the agenda. He and his wife Carol have three children, two of whom grew up in this church.
-            </p>
-            <p style={{ margin: 0 }}>
-              Outside the pulpit, Pastor Steve is a student of church history, an avid reader, and an occasional fisherman. He believes the local church is the hope of the world and has given his life to prove it.
-            </p>
-          </div>
         </div>
       </section>
 

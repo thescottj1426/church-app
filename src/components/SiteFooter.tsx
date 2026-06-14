@@ -55,8 +55,9 @@ export default function SiteFooter() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, color: 'oklch(0.88 0.03 240)', fontFamily: 'var(--ui)', fontSize: 14 }}>
             <div>2025 Pullman Ave</div>
             <div>Jacksonville, FL 32209</div>
-            <div style={{ marginTop: 8 }}>Sun · Multiple services</div>
-            <div>Wed · Midweek service</div>
+            <div style={{ marginTop: 8 }}>Sun · 10:00 AM Sunday School</div>
+            <div>Sun · 11:00 AM Worship</div>
+            <div>Wed · 7:00 PM Midweek Worship</div>
           </div>
         </div>
 

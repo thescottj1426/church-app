@@ -18,12 +18,8 @@ export default function AboutPage() {
             lineHeight: 0.92, fontWeight: 500,
             letterSpacing: '-0.02em', margin: 0,
           }}>
-            A family of faith<br />since 1962.
+            A family of faith.
           </h1>
-          <p style={{ marginTop: 28, fontSize: 21, color: 'var(--ink-2)', maxWidth: 620, lineHeight: 1.5, fontFamily: 'var(--serif)' }}>
-            Divine Power Christian Church was planted by twelve families meeting in a school cafeteria on Cedar Creek Road.
-            Six decades later, the cafeteria is now a sanctuary — but the calling is the same.
-          </p>
         </div>
       </section>
 
@@ -36,28 +32,11 @@ export default function AboutPage() {
           </h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 40, fontSize: 19, lineHeight: 1.65, color: 'var(--ink-2)', fontFamily: 'var(--serif)' }}>
-          <p>
-            <span style={{
-              fontFamily: 'var(--serif-display)', fontSize: 64,
-              float: 'left', lineHeight: 0.85,
-              marginRight: 12, marginTop: 6, color: 'var(--cobalt)',
-            }}>
-              I
-            </span>
-            n 1962, Pastor Robert Devine gathered eleven other families who wanted a Christian congregation rooted in expository preaching and warm community. They met in a borrowed school cafeteria for three years before purchasing land on Mulberry Lane.
-          </p>
           <img
             src="/photos/staff/gallery/frontofchurch.jpg"
             alt="Front of Divine Power Christian Church"
             style={{ width: '100%', height: '80vh', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
           />
-          <p>
-            The church bought its first piece of land in 1965 — five acres on Mulberry Lane, where we still meet today.
-            The original sanctuary, built mostly by volunteers, seated 180. The current building was completed in 1998 and seats 600.
-          </p>
-          <p>
-            Today, Divine Power is led by Pastor Steve Wilson and a staff of ten. Around 450 people call this church home — from babies in the nursery to widows who were here when the doors opened. Every generation, the calling has been the same: love Jesus, love each other, love our neighbors.
-          </p>
         </div>
       </section>
 

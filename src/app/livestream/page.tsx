@@ -22,7 +22,7 @@ export default function LiveStreamPage() {
               Watch Live
             </Title>
             <Text ta="center" style={{ color: 'oklch(0.88 0.03 240)' }} fz="lg">
-              Join us for Sunday services · Multiple service times
+              Sundays 11:00 AM · Wednesdays 7:00 PM ET
             </Text>
           </Stack>
         </Container>
